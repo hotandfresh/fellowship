@@ -43,10 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .loginPage("/login")
-                    .successForwardUrl("/myprofile")
+                    .defaultSuccessUrl("/myprofile", true)
                 .and()
                 .logout();
     }
+
 
     @Override
     @Bean
