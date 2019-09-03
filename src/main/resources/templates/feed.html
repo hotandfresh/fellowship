@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Make a Post</title>
+    <title>Feed</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css"/>
 </head>
@@ -11,15 +11,18 @@
     <div th:replace="fragments/nav :: nav"></div>
 
     <div class="container">
-        <h1>Add a Post</h1>
-        <form method="POST" action="/post">
-            <textarea name="body" placeholder="type post here"></textarea>
-            <button type="submit" class="btn btn-primary btn-md">Submit</button>
-        </form>
+        <h3>Posts from people you're following:</h3>
+
+        <div th:each="people : ${followed}">
+            <a th:href="${'/users/' + people.id}"><h4 th:text="${people.username}"></h4></a>
+            <div th:each="post : ${people.posts}">
+                <p th:text="${post.createdAt}"></p>
+                <p th:text="${post.body}"></p>
+            </div>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </body>
 </html>

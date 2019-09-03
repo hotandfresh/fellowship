@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -24,6 +25,17 @@ public class ApplicationUser implements UserDetails {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "applicationUser")
     private List<Post> posts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "follows",
+            joinColumns = @JoinColumn(name = "follower_id") ,
+            inverseJoinColumns = @JoinColumn(name="followed_id")
+    )
+    Set<ApplicationUser> following;
+
+    @ManyToMany(mappedBy = "following")
+    Set<ApplicationUser> followedBy;
 
     public ApplicationUser(){}
 
@@ -55,6 +67,13 @@ public class ApplicationUser implements UserDetails {
         return posts;
     }
 
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public Set<ApplicationUser> getFollowedBy() {
+        return followedBy;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

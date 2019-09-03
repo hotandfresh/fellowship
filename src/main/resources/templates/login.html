@@ -9,14 +9,22 @@
 <body>
     <div th:replace="fragments/nav :: nav"></div>
 
-    <h1>Login to Code Fellowship</h1>
+    <div class="container">
+        <h1>Login to Code Fellowship</h1>
 
-    <form method="POST" action="/login">
-        Username: <input type="text" name="username" />
-        Password: <input type="password" name="password" />
-        <button type="submit" class="btn btn-primary btn-md">Submit</button>
-    </form>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input name="username" type="text" id="username">
+            </div>
 
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input name="password" type="password" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-md">Submit</button>
+        </form>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>

@@ -3,3 +3,7 @@ img{
     height: 10%;
     object-fit: cover;
 }
+
+ul {
+  list-style-type: none;
+}
