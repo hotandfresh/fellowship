@@ -2,10 +2,10 @@
 <html lang="en">
     <nav th:fragment="nav" class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Welcome to Code Fellowship, <span th:text="${loggedInUser.username}"></span></a>
-            </div>
             <div th:if="${loggedInUser}">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Welcome to Code Fellowship, <span th:text="${loggedInUser.username}"></span></a>
+                </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="/myprofile">View My Profile</a></li>
@@ -16,8 +16,13 @@
             </div>
 
             <div th:unless="${loggedInUser}">
-                <a href="/login">Login</a>
-                <a href="/signup">Sign Up</a>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Code Fellowship</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                </ul>
             </div>
         </div>
     </nav>

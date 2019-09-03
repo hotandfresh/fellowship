@@ -18,6 +18,10 @@
         <p>First Name: <span th:text="${user.firstName}"></span></p>
         <p>Last Name: <span th:text="${user.lastName}"></span></p>
         <p>Bio: <span th:text="${user.bio}"></span></p>
+        <ul th:each="post : ${user.posts}">
+            <li th:text="${post.createdAt}"></li>
+            <li th:text="${post.body}"></li>
+        </ul>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>

@@ -33,6 +33,11 @@ public class HomeController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String getProfile(){
+        return "myprofile";
+    }
+
     @GetMapping("/signup")
     public String getSignUp(){
         return "signup";
