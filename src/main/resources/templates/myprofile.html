@@ -8,13 +8,21 @@
 
 </head>
 <body>
-    <h1><span th:text="${loggedInUser.username}"></span>'s Profile</h1>
-    <img src="/profile.png" />
-    <p>First Name: <span th:text="${loggedInUser.firstName}"></span></p>
-    <p>Last Name: <span th:text="${loggedInUser.lastName}"></span></p>
-    <p>Bio: <span th:text="${loggedInUser.bio}"></span></p>
+    <div th:replace="fragments/nav :: nav"></div>
 
+    <div class="container">
+        <h1><span th:text="${loggedInUser.username}"></span>'s Profile</h1>
+        <img src="/profile.png" />
+        <p>First Name: <span th:text="${loggedInUser.firstName}"></span></p>
+        <p>Last Name: <span th:text="${loggedInUser.lastName}"></span></p>
+        <p>Bio: <span th:text="${loggedInUser.bio}"></span></p>
+        <p>Posts: </p>
+        <ul th:each="post : ${loggedInUser.posts}">
+            <li th:text="${post.createdAt}"></li>
+            <li th:text="${post.body}"></li>
+        </ul>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HomePage</title>
+    <title>Make a Post</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
+
     <div th:replace="fragments/nav :: nav"></div>
+
+    <div class="container">
+        <h1>Add a Post</h1>
+        <form method="POST" action="/post">
+            <textarea name="body" placeholder="type post here"></textarea>
+            <button type="submit" class="btn btn-primary btn-md">Submit</button>
+        </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </body>
 </html>

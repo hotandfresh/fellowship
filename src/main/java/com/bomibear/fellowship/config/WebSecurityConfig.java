@@ -37,16 +37,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-//                .antMatchers("/", "/login", "/signup", "*.png").permitAll()
-//                .antMatchers(HttpMethod.POST, "/users").permitAll()
-//                .anyRequest().authenticated()
+                .antMatchers("/", "/login", "/signup", "*.png").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login")
-//                    .successForwardUrl("/")
+                    .defaultSuccessUrl("/myprofile", true)
                 .and()
                 .logout();
     }
+
 
     @Override
     @Bean

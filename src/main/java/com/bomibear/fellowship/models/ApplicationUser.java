@@ -4,11 +4,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -23,6 +22,20 @@ public class ApplicationUser implements UserDetails {
     private String lastName;
     private String password;
     private String bio;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "applicationUser")
+    private List<Post> posts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "follows",
+            joinColumns = @JoinColumn(name = "follower_id") ,
+            inverseJoinColumns = @JoinColumn(name="followed_id")
+    )
+    Set<ApplicationUser> following;
+
+    @ManyToMany(mappedBy = "following")
+    Set<ApplicationUser> followedBy;
 
     public ApplicationUser(){}
 
@@ -48,6 +61,18 @@ public class ApplicationUser implements UserDetails {
 
     public String getBio() {
         return bio;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public Set<ApplicationUser> getFollowedBy() {
+        return followedBy;
     }
 
     @Override

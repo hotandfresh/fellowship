@@ -7,14 +7,26 @@
     <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
-    <h1>Code Fellowship Users</h1>
+    <div th:replace="fragments/nav :: nav"></div>
 
-    <div th:each="user : ${allUsers}">
-        <img src="/profile.png" />
-        <p>Username: <span th:text="${user.username}"></span></p>
-        <p>First Name: <span th:text="${user.firstName}"></span></p>
-        <p>Last Name: <span th:text="${user.lastName}"></span></p>
-        <p>Bio: <span th:text="${user.bio}"></span></p>
+    <div class="container">
+        <h1>Code Fellowship Users</h1>
+
+        <div th:each="user : ${allUsers}">
+            <img src="/profile.png" />
+            <p>Username: <span th:text="${user.username}"></span></p>
+            <p>First Name: <span th:text="${user.firstName}"></span></p>
+            <p>Last Name: <span th:text="${user.lastName}"></span></p>
+            <p>Bio: <span th:text="${user.bio}"></span></p>
+            <p>Posts: </p>
+            <ul th:each="post : ${user.posts}">
+                <li>Date: <span th:text="${post.createdAt}"></span></li>
+                <li>Post: <span th:text="${post.body}"></span></li>
+            </ul>
+            <form method="POST" th:action="'/users/' + ${user.id} + '/following'" th:if="${user.id != loggedInUser.id}">
+                <button type="submit" name="follow" value="follow" class="btn btn-primary btn-md">Follow</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
