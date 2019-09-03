@@ -17,12 +17,12 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String username;
+    private String username;
 
-    String firstName;
-    String lastName;
-    String password;
-    String bio;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private String bio;
 
     public ApplicationUser(){}
 
@@ -32,6 +32,22 @@ public class ApplicationUser implements UserDetails {
         this.lastName = lastName;
         this.password = password;
         this.bio = bio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getBio() {
+        return bio;
     }
 
     @Override

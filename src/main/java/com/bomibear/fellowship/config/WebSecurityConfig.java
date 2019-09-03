@@ -1,7 +1,6 @@
 package com.bomibear.fellowship.config;
 
-// TODO: make this import match your package structure
-//import com.bomibear.fellowship.config.UserDetailsServiceImpl;
+import com.bomibear.fellowship.config.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
