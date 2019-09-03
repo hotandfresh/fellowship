@@ -41,14 +41,12 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getUser(@PathVariable long id, Principal p, Model m){
-        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+    public String getUser(@PathVariable long id, Model m){
         ApplicationUser viewedUser = applicationUserRepository.findById(id).get();
 
-        m.addAttribute("loggedInUser", loggedInUser);
         m.addAttribute("viewedUser", viewedUser);
 
-        return "myprofile";
+        return "userProfile";
     }
 
     @GetMapping("/users")
