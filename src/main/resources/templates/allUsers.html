@@ -20,10 +20,10 @@
             <p>Bio: <span th:text="${user.bio}"></span></p>
             <p>Posts: </p>
             <ul th:each="post : ${user.posts}">
-                <li th:text="${post.createdAt}"></li>
-                <li th:text="${post.body}"></li>
+                <li>Date: <span th:text="${post.createdAt}"></span></li>
+                <li>Post: <span th:text="${post.body}"></span></li>
             </ul>
-            <form method="POST" th:action="'/users/' + ${user.id} + '/following'">
+            <form method="POST" th:action="'/users/' + ${user.id} + '/following'" th:if="${user.id != loggedInUser.id}">
                 <button type="submit" name="follow" value="follow" class="btn btn-primary btn-md">Follow</button>
             </form>
         </div>

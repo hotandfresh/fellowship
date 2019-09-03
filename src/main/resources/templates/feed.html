@@ -14,10 +14,10 @@
         <h3>Posts from people you're following:</h3>
 
         <div th:each="people : ${followed}">
-            <a th:href="${'/users/' + people.id}"><h4 th:text="${people.username}"></h4></a>
+            <h4>Name: <a th:href="${'/users/' + people.id}"><span th:text="${people.username}"></span></a></h4>
             <div th:each="post : ${people.posts}">
-                <p th:text="${post.createdAt}"></p>
-                <p th:text="${post.body}"></p>
+                <p>Date: <span th:text="${post.createdAt}"></span></p>
+                <p>Post: <span th:text="${post.body}"></span></p>
             </div>
         </div>
     </div>

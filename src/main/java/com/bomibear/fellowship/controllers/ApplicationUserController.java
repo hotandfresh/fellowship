@@ -77,6 +77,7 @@ public class ApplicationUserController {
     public String getFeed(Principal p, Model m){
         ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("followed", loggedInUser.getFollowing());
+        m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
 
         return "/feed";
     }
