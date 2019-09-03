@@ -27,6 +27,12 @@ public class ApplicationUserController {
     @Autowired
     ApplicationUserRepository applicationUserRepository;
 
+    @GetMapping("/myprofile")
+    public String getMyProfile(Principal p, Model m){
+        m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
+        return "myprofile";
+    }
+
     @PostMapping("/users")
     public RedirectView createUser(String username, String firstName, String lastName, String password, String bio){
         ApplicationUser newUser = new ApplicationUser(username, firstName, lastName, encoder.encode(password), bio);
@@ -41,17 +47,18 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getUser(@PathVariable long id, Model m){
+    public String getUser(@PathVariable long id, Principal p, Model m){
         ApplicationUser viewedUser = applicationUserRepository.findById(id).get();
 
         m.addAttribute("viewedUser", viewedUser);
-
+        m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
         return "userProfile";
     }
 
     @GetMapping("/users")
-    public String getAllUsers(Model m){
+    public String getAllUsers(Principal p, Model m){
         m.addAttribute("allUsers", applicationUserRepository.findAll());
+        m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
         return "allUsers";
     }
 }
