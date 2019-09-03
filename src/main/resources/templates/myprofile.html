@@ -8,6 +8,8 @@
 
 </head>
 <body>
+    <div th:replace="fragments/nav :: nav"></div>
+
     <h1><span th:text="${loggedInUser.username}"></span>'s Profile</h1>
     <img src="/profile.png" />
     <p>First Name: <span th:text="${loggedInUser.firstName}"></span></p>

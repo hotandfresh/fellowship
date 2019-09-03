@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
+    <div th:replace="fragments/nav :: nav"></div>
+
+
     <h1>Code Fellowship Users</h1>
 
     <div th:each="user : ${allUsers}">
