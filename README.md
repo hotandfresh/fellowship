@@ -31,9 +31,11 @@ Add any of these endpoints to the end of ```http://localhost:8080```
 
 ```/myprofile``` : view a specific user account profile
 
+```/users```: displays all users
+
 ```/users/{id}``` : view data about a single user
 
-```/users```: displays all users
+```/users/{id}/feed``` : displays all the posts for a specific user
 
 ```/post```: add a post.  after adding, users are taken to their profile where their posts are displayed 
  
