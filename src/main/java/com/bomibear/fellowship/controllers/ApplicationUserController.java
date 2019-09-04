@@ -70,7 +70,7 @@ public class ApplicationUserController {
         currentUser.getFollowing().add(follower);
         applicationUserRepository.save(currentUser);
 
-        return new RedirectView("/feed");
+        return new RedirectView("feed");
     }
 
     @GetMapping("/feed")
@@ -79,6 +79,16 @@ public class ApplicationUserController {
         m.addAttribute("followed", loggedInUser.getFollowing());
         m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
 
-        return "/feed";
+        return "feed";
+    }
+
+    @GetMapping("/users/{id}/feed")
+    public String getSpecificFeed(@PathVariable long id, Principal p, Model m){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser follower = applicationUserRepository.findById(id).get();
+        m.addAttribute("follower", follower);
+        m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
+
+        return "specificFeed";
     }
 }

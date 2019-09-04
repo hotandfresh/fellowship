@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HomePage</title>
+    <title>Specific Feed</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
     <div th:replace="fragments/nav :: nav"></div>
-    <div class="container"><h3>Code and Fellowship</h3></div>
+
+    <div class="container">
+        <h3>Posts from <span th:text="${follower.firstName}"></span></h3>
+
+        <div th:each="post : ${follower.posts}">
+            <p>Date: <span th:text="${post.createdAt}"></span></p>
+            <p>Post: <span th:text="${post.body}"></span></p>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
