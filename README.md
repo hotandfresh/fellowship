@@ -44,3 +44,4 @@ Spring Authorization Steps were followed [here](https://github.com/codefellows/s
 
 ## Resources
 Code Reviews after each day!
+The error page was from [here](https://www.logicbig.com/tutorials/spring-framework/spring-boot/custom-thymeleaf-error-page.html)
